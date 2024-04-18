@@ -1,5 +1,7 @@
 import 'package:calculator_provider/constants/colors.dart';
+import 'package:calculator_provider/providers/calc_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Button1 extends StatelessWidget {
   const Button1({
@@ -12,16 +14,19 @@ class Button1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 3,
-      color: AppColors.primaryColor,
-      borderRadius: BorderRadius.circular(50),
-      child: CircleAvatar(
-        backgroundColor: AppColors.secondary2Color,
-        radius: 36,
-        child: Text(
-          label,
-          style: TextStyle(color: textColor, fontSize: 32, fontWeight: FontWeight.w600),
+    return InkWell(
+      onTap: ()=> Provider.of<CalculatorProvider>(context, listen: false).setValue(label),
+      child: Material(
+        elevation: 3,
+        color: AppColors.primaryColor,
+        borderRadius: BorderRadius.circular(50),
+        child: CircleAvatar(
+          backgroundColor: AppColors.secondary2Color,
+          radius: 36,
+          child: Text(
+            label,
+            style: TextStyle(color: textColor, fontSize: 32, fontWeight: FontWeight.w600),
+          ),
         ),
       ),
     );
